@@ -16,8 +16,8 @@ app.use("/api/v1/tasks",taskRoute);
 //DB接続(asyncで非同期処理)
 const start = async () => {
     try {
-        await connectDB(process.env.MONGO_URL);    //.envに秘匿されたMongoDBへのURL
-        app.listen(PORT,console.log("Server start up"));
+        await connectDB(process.env.MONGO_RENDER_URL || process.env.MONGO_URL);    //.envに秘匿されたMongoDBへのURL
+        app.listen(process.env.PORT || PORT,console.log("Server start up"));
     } catch (err) {
         console.log(err);
     }
